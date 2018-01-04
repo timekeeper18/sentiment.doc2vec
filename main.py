@@ -24,7 +24,7 @@ except Exception as exc:
     logging.info("Please use 'pip3 install <module_name>' to install module")
     exit()
 
-SIZE = 400
+SIZE = 400 # size of vector
 EPOCHS = 20
 WORKERS = 2
 LOAD_MODEL = True
