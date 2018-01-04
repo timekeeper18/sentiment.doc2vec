@@ -56,7 +56,7 @@ if __name__ == '__main__':
     model_dbow = gensim.models.Doc2Vec(min_count=1, max_vocab_size=2e5, iter=10, window=10, size=SIZE, sample=1e-3,
                                        negative=5, dm=0, workers=WORKERS)
 
-    # If we have learnd models, we can load it
+    # If we have fitted models, we can load it
     if LOAD_MODEL:
         model_dm = gensim.models.Doc2Vec.load(model_dm_file)
         model_dbow = gensim.models.Doc2Vec.load(model_dbow_file)
@@ -64,7 +64,7 @@ if __name__ == '__main__':
     all_docs = learn_set['x_train'] + learn_set['x_test'] + learn_set['x_unsup']
     train_docs = learn_set['x_train'] + learn_set['x_unsup']
 
-    # Learn new models
+    # Train new models
     if not LOAD_MODEL:
         # Build vocabulary over all documents
         model_dm.build_vocab(all_docs, progress_per=1000, update=False)
@@ -93,7 +93,7 @@ if __name__ == '__main__':
     test_vecs = np.hstack((test_vecs_dm, test_vecs_dbow))
     y = np.hstack((learn_set['y_train'], learn_set['y_test']))
 
-    #
+    # Create and train decision
     decision_model = DecisionModel(train_vecs, y, seed=9, test_size=0.25)
     model, accuracy, class_report, conf_matrix, imps = decision_model.xgb()
     logging.info('     Test Accuracy (XGBClassifier): %.2f ' % accuracy)
@@ -125,6 +125,7 @@ if __name__ == '__main__':
     report = classification_report(learn_set['y_test'], svc_predictions, target_names=['Neg', 'Pos'])
     print(report)
 
+    # Show ROC curves of fitted models
     plt.plot([0, 1], [0, 1], 'k--')
     plt.xlim([0.0, 1.0])
     plt.ylim([0.0, 1.05])
