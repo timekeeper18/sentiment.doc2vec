@@ -12,9 +12,9 @@ try:
     import random as rnd
     from sklearn.metrics import roc_curve, auc, classification_report
     import matplotlib.pyplot as plt
-except Exception as exc:
+except ImportError as exc:
     logging.error(exc)
-    logging.info("Please use 'pip3 install <module_name>' to install module")
+    logging.info("Please use: 'pip3 install {}' to install module".format(exc.args.__str__().split("'")[-2]))
     exit()
 
 SIZE = 400 # size of vector
