@@ -1,11 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-"""
-Created on Jun 1, 2016
-
-@author: timekeeper
-"""
-
 import os
 import sys
 
