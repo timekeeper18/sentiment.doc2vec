@@ -1,11 +1,5 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-"""
-Created on Nov 07, 2016
-
-@author: timekeeper
-"""
-
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 import xgboost as xgb
