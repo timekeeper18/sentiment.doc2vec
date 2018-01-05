@@ -1,12 +1,5 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-"""
-
-Created on Nov 07, 2016
-
-@author: timekeeper
-"""
-
 import logging.config
 from sys import exit
 from src import config
